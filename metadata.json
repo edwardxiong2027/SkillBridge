@@ -1,0 +1,7 @@
+{
+  "name": "SkillBridge",
+  "description": "Unlock your potential by translating everyday experiences into professional skills and career opportunities.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
