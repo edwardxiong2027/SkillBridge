@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CameraScanner } from './components/CameraScanner';
 import { AnalysisResultDisplay } from './components/RecipeCard'; // Importing from repurposed file
 import { analyzeExperience, digitizeDocument } from './services/geminiService';

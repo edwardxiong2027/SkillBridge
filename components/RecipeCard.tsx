@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AnalysisResult, InterviewQuestion } from '../types';
 import { 
   Briefcase, CheckCircle, TrendingUp, DollarSign, Star, FileText, 
-  Award, Zap, Copy, MessageSquare, Shield, ChevronDown, ChevronUp 
+  Zap, Copy, MessageSquare, Shield, ChevronDown, ChevronUp 
 } from 'lucide-react';
 
 interface AnalysisResultDisplayProps {

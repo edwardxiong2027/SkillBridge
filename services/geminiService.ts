@@ -1,7 +1,14 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AnalysisResult } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Lazily create the client so the app can still render if the API key is missing.
+const getAiClient = () => {
+  const apiKey = (import.meta as any).env?.VITE_API_KEY || process.env.API_KEY;
+  if (!apiKey) {
+    throw new Error("Missing Gemini API key (VITE_API_KEY).");
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 /**
  * Extracts text content from a document/image using Gemini Vision
@@ -10,7 +17,7 @@ export const digitizeDocument = async (base64Image: string): Promise<string> => 
   try {
     const cleanBase64 = base64Image.replace(/^data:image\/(png|jpeg|jpg|webp);base64,/, '');
 
-    const response = await ai.models.generateContent({
+    const response = await getAiClient().models.generateContent({
       model: 'gemini-2.5-flash-image',
       contents: {
         parts: [
@@ -58,7 +65,7 @@ export const analyzeExperience = async (text: string): Promise<AnalysisResult> =
       Return strictly JSON.
     `;
 
-    const response = await ai.models.generateContent({
+    const response = await getAiClient().models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
