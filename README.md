@@ -12,9 +12,25 @@ View your app in AI Studio: https://ai.studio/apps/drive/15zl5QuUp-0tHnW_2XnzRQS
 
 **Prerequisites:**  Node.js
 
+## Environment Setup
 
-1. Install dependencies:
+1. Copy `.env.example` to `.env.local` and populate values:
+   - `VITE_API_KEY`: your Gemini (Google Generative AI) API key
+   - `VITE_FIREBASE_API_KEY`
+   - `VITE_FIREBASE_AUTH_DOMAIN`
+   - `VITE_FIREBASE_PROJECT_ID`
+   - `VITE_FIREBASE_STORAGE_BUCKET`
+   - `VITE_FIREBASE_MESSAGING_SENDER_ID`
+   - `VITE_FIREBASE_APP_ID`
+
+2. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+
 3. Run the app:
    `npm run dev`
+
+### Important: Rotate and Restrict Keys
+GitHub flagged an exposed Google API key. After moving secrets into env files, you should:
+- Rotate the leaked key in Google Cloud Console.
+- Add API restrictions (only Generative AI) and HTTP referrer restrictions to your key.
+- Keep `.env*` files uncommitted; they are ignored via `.gitignore`.
